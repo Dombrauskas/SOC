@@ -1,7 +1,5 @@
 package br.com.soc.exame.model;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,47 +8,65 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(name = "paciente")
 public class Exame {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	
-	@Column(name = "nm_paciente", unique = true)
-	private String nome;
-	
-	@Column(name = "nm_exame")
-	private String exame;
-	
-	@Column(name = "dt_exame")
-	private Date data;
-	
-	@Column(name = "ds_observacao")
-	private String observacao;
-
-	
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public String getExame() {
-		return exame;
-	}
-	public void setExame(String exame) {
-		this.exame = exame;
-	}
-	public Date getData() {
-		return data;
-	}
-	public void setData(Date data) {
-		this.data = data;
-	}
-	public String getObservacao() {
-		return observacao;
-	}
-	public void setObservacao(String observacao) {
-		this.observacao = observacao;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    @Column(unique = true)
+    private String nome;
+    private String consulta;
+    private String data;
+    private String observacao;
+    
+    public Exame() {}
+    
+    public Exame(String nome, String consulta, String data, String observacao) {
+        this.nome = nome;
+        this.consulta = consulta;
+        this.data = data;
+        this.observacao = observacao;
+    }
+    
+    public String getNome() {
+        return nome;
+    }
+    
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
+    public String getConsulta() {
+        return consulta;
+    }
+    
+    public void setConsulta(String consulta) {
+        this.consulta = consulta;
+    }
+    
+    public String getData() {
+        return data;
+    }
+    
+    public void setData(String data) { this.data = data; }
+    
+    public String getObservacao() {
+        return observacao;
+    }
+    
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
+    
+    @Override
+    public String toString() {
+        return "Exame{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", exame='" + consulta + '\'' +
+                ", data=" + data +
+                ", observacao='" + observacao + '\'' +
+                '}';
+    }
 }
