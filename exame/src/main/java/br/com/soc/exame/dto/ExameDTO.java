@@ -22,6 +22,13 @@ public class ExameDTO {
         return exame;
     }
     
+    public void setExame(Exame exame) {
+    	this.nome = exame.getNome();
+    	this.consulta = exame.getConsulta();
+    	this.data = exame.getData();
+    	this.observacao = exame.getObservacao();
+    }
+    
     public String getNome() {
         return nome;
     }

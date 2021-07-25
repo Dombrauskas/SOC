@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "paciente")
-public class Exame {
+public class Exame implements Comparable<Exame> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,6 +29,9 @@ public class Exame {
         this.observacao = observacao;
     }
     
+    public Long getId() {
+    	return id;
+    }
     public String getNome() {
         return nome;
     }
@@ -68,5 +71,10 @@ public class Exame {
                 ", data=" + data +
                 ", observacao='" + observacao + '\'' +
                 '}';
+    }
+    
+    @Override
+    public int compareTo(Exame ex) {
+    	return getNome().compareTo(ex.getNome());
     }
 }
