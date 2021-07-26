@@ -22,6 +22,14 @@ public class ExameDTO {
         return exame;
     }
     
+    public Exame updateExame(Exame exame) {
+    	exame.setNome(this.nome);
+    	exame.setConsulta(this.consulta);
+    	exame.setData(this.data);
+    	exame.setObservacao(this.observacao);
+    	return exame;
+    }
+    
     public void setExame(Exame exame) {
     	this.nome = exame.getNome();
     	this.consulta = exame.getConsulta();

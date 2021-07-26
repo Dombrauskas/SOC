@@ -30,7 +30,7 @@
    	</div>
     <div class="container mt-3">
         <div class="row">
-            <form action="/exames" method="POST" th:object="${exameDTO}">
+            <form th:action="@{/exames/{id}(id = ${id})}" method="POST" th:object="${exameDTO}">
                 <div class="mb-3">
                     <label class="form-label">Nome</label>
                     <input class="form-control" th:errorclass="is-invalid" type="text"

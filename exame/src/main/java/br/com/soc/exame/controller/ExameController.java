@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.soc.exame.dto.ExameDTO;
@@ -64,7 +65,7 @@ public class ExameController {
     }
     
     @GetMapping("/exames/{id}/edit")
-    public ModelAndView edit(@PathVariable Long id, ExameDTO exame) {
+    public ModelAndView editar(@PathVariable("id") Long id, ExameDTO exame) {
     	Optional<Exame> result = repo.findById(id);
     	if (result.isPresent()) {
     		Exame ex = result.get();
@@ -74,5 +75,28 @@ public class ExameController {
     		return mv;
     	}
     	return new ModelAndView("redirect:/exames");
+    }
+    
+    @PostMapping("/exames/{id}")
+    public String update(@PathVariable("id") Long id, ExameDTO exameDTO) {
+    	Optional<Exame> result = repo.findById(id);
+    	
+    	if (result.isPresent()) {
+    		Exame ex = exameDTO.updateExame(result.get());
+    		repo.save(ex);
+    		return "redirect:/exames";
+    	}
+    	return "redirect:/index";
+    }
+    
+    @GetMapping("exames/{id}/delete")
+    public String deletar(@PathVariable("id") Long id) {
+    	Optional<Exame> result = repo.findById(id);
+    	
+    	if (result.isPresent()) {
+    		repo.deleteById(id);
+    		return "redirect:/exames";
+    	}
+    	return "redirect:/";
     }
 }
